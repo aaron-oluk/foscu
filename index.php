@@ -3,17 +3,22 @@ $title = "FOSCU";
 include "header.php";
 require "dashboard/dbconn.php";
 
-// for upcoming events table
-$sql = "SELECT * FROM events ORDER BY eventdate DESC";
-$querry = $conn->prepare($sql);
-$retdata = $querry->execute();
-$admit = $querry->fetchAll(PDO::FETCH_OBJ);
+$admit = [];
+$parent = [];
 
-// for recent events table
-$sql = "SELECT * FROM recent  ORDER BY eventdate DESC LIMIT 4";
-$querry = $conn->prepare($sql);
-$retdata = $querry->execute();
-$parent = $querry->fetchAll(PDO::FETCH_OBJ);
+if ($conn) {
+    // for upcoming events table
+    $sql = "SELECT * FROM events ORDER BY eventdate DESC";
+    $querry = $conn->prepare($sql);
+    $querry->execute();
+    $admit = $querry->fetchAll(PDO::FETCH_OBJ);
+
+    // for recent events table
+    $sql = "SELECT * FROM recent ORDER BY eventdate DESC LIMIT 4";
+    $querry = $conn->prepare($sql);
+    $querry->execute();
+    $parent = $querry->fetchAll(PDO::FETCH_OBJ);
+}
 ?>
 
 <style>
@@ -244,7 +249,7 @@ $parent = $querry->fetchAll(PDO::FETCH_OBJ);
                 </div>
             </div>
         </div> -->
-        <div class="members container">
+        <!-- <div class="members container">
             <h3>FoSCU Members</h3>
             <div class="memimgs slider">
                 <div class="slide">
@@ -293,7 +298,7 @@ $parent = $querry->fetchAll(PDO::FETCH_OBJ);
                         alt=""></a>
 
             </div>
-        </div>
+        </div> -->
         <div class="photos container">
             <h3 class="text-center">Our Events Photos</h3>
             <div class="container">
@@ -311,7 +316,7 @@ $parent = $querry->fetchAll(PDO::FETCH_OBJ);
                 </div>
             </div>
         </div>
-        <div class="partner">
+        <!-- <div class="partner">
             <h3>FoSCU Partners</h3>
             <a href="https://www.biovision.ch/en/" target="_blank"><img src="static/images/biov.png" alt=""></a>
             <div class="contact card">
@@ -320,7 +325,7 @@ $parent = $querry->fetchAll(PDO::FETCH_OBJ);
                 <h6>Email: info@foscu.org</h6>
                 <h6>P.O.Box 154968</h6>
             </div>
-        </div>
+        </div> -->
     </section>
 </div>
 <?php

@@ -25,30 +25,33 @@
 <script src="static/styles/js/progress.js"></script>
 <script>
 $(document).ready(function() {
-  $('.memimgs').slick({
-    centerMode: true,
-    centerPadding: '1.5rem',
-    slidesToShow: 4,
-    responsive: [{
-        breakpoint: 768,
-        settings: {
-          arrows: false,
-          centerMode: true,
-          centerPadding: '40px',
-          slidesToShow: 3
+  var $memimgs = $('.memimgs');
+  if ($memimgs.length) {
+    $memimgs.slick({
+      centerMode: true,
+      centerPadding: '1.5rem',
+      slidesToShow: 4,
+      responsive: [{
+          breakpoint: 768,
+          settings: {
+            arrows: false,
+            centerMode: true,
+            centerPadding: '40px',
+            slidesToShow: 3
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            arrows: false,
+            centerMode: true,
+            centerPadding: '40px',
+            slidesToShow: 1
+          }
         }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          arrows: false,
-          centerMode: true,
-          centerPadding: '40px',
-          slidesToShow: 1
-        }
-      }
-    ]
-  })
+      ]
+    });
+  }
 });
 </script>
 <!-- MDB -->
