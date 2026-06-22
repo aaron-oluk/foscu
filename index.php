@@ -89,6 +89,61 @@ if ($conn) {
             margin-top: 5rem;
         }
     }
+
+    /* FoSCU Updates – project theme */
+    .updates h3 {
+        color: #F79321;
+    }
+    .updates .card {
+        border: 1px solid #eee;
+        border-radius: 0.5rem;
+    }
+    .updates .card-title {
+        color: #F79321;
+        font-weight: 600;
+    }
+    /* FoSCU Updates – image display redesign */
+    .updates .updates-gallery {
+        margin-top: 1.25rem;
+        gap: 1rem;
+    }
+    .updates .updates-img-wrap {
+        overflow: hidden;
+        border-radius: 0.5rem;
+        border: 1px solid #eee;
+        background: #fafafa;
+    }
+    .updates .updates-img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+    .updates .updates-gallery.cols-3 .updates-img-wrap {
+        height: 220px;
+    }
+    .updates .updates-gallery.cols-2 .updates-img-wrap {
+        height: 280px;
+    }
+    .updates .updates-img-single {
+        margin-top: 1.25rem;
+        max-width: 100%;
+        overflow: hidden;
+        border-radius: 0.5rem;
+        border: 1px solid #eee;
+        background: #fafafa;
+    }
+    .updates .updates-img-single img {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        display: block;
+    }
+    @media (max-width: 767px) {
+        .updates .updates-gallery.cols-3 .updates-img-wrap { height: 200px; }
+        .updates .updates-gallery.cols-2 .updates-img-wrap { height: 240px; }
+        .updates .updates-img-single img { max-height: 320px; }
+    }
 </style>
 <div class="navmargin">
     <div class="main2">
@@ -299,6 +354,100 @@ if ($conn) {
 
             </div>
         </div> -->
+        <div class="updates container mb-5">
+            <h3 class="text-center mb-4">FoSCU Updates</h3>
+            <p class="text-center text-muted mb-4">News and activities from the Food Safety Coalition of Uganda.</p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 mx-auto">
+                        <div class="card mb-4 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">1. Launching Evidence to Strengthen Food Safety and Sustainable Crop Protection</h5>
+                                <p class="card-text">Representatives of member organizations of the Food Safety Coalition of Uganda (FoSCU) participated in the launch of the “Food Safety–Crop Protection Nexus: Insights from Uganda’s Agriculture Sector” synthesis report. The report presents evidence-based analysis on the current state of agrochemical use in Uganda and its implications for food safety, environmental sustainability, and public health. It further outlines targeted, actionable recommendations for policymakers, regulators, agricultural actors, and development partners to advance sustainable crop protection practices and strengthen food safety systems across the country.</p>
+                                <div class="updates-img-single">
+                                    <img src="static/gallery/updates-2025/launching-evidence-crop-protection.png" alt="FoSCU synthesis report launch – stakeholders with food safety materials">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-4 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">2. World Food Safety Day 2025: Advancing Public Awareness and Advocacy</h5>
+                                <p class="card-text">In collaboration with key stakeholders, members of the Food Safety Coalition of Uganda (FoSCU) led the Food Safety Walk in Kampala City as part of the 2025 World Food Safety Day commemorations. The initiative served as a high-visibility advocacy platform to raise public awareness on food safety risks and to promote collective responsibility for safer food systems. Through this engagement, FoSCU amplified the message of “safer food for all, by all,” mobilizing consumers, regulators, producers, and vendors to take shared action toward protecting public health and strengthening food safety practices across the value chain.</p>
+                                <div class="row updates-gallery cols-3">
+                                    <div class="col-md-4">
+                                        <div class="updates-img-wrap"><img src="static/gallery/updates-2025/wfsd-walk-1.png" alt="World Food Safety Day 2025 – Food Safety Walk in Kampala"></div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="updates-img-wrap"><img src="static/gallery/updates-2025/wfsd-walk-2.png" alt="World Food Safety Day 2025 – march and banner"></div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="updates-img-wrap"><img src="static/gallery/updates-2025/wfsd-signs.png" alt="World Food Safety Day 2025 – participants with food safety signs"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-4 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">3. Strengthening Community Capacity on Food Safety</h5>
+                                <p class="card-text">Through strategic partnerships, the Food Safety Coalition of Uganda (FoSCU) works to raise awareness and strengthen community capacity on food safety hazards. This is achieved through structured community engagements that empower consumers with practical knowledge on food safety risks, prevention measures, and safe food handling practices. By translating technical food safety standards into accessible community-level learning, FoSCU and its partners enable households, food vendors, and local leaders to identify, prevent, and respond to food safety hazards—contributing to improved public health, safer food systems, and more informed consumer decision-making.</p>
+                                <div class="row updates-gallery cols-2">
+                                    <div class="col-md-6">
+                                        <div class="updates-img-wrap"><img src="static/gallery/updates-2025/community-capacity-workshop.png" alt="FoSCU food safety workshop – presenter and audience"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="updates-img-wrap"><img src="static/gallery/updates-2025/community-capacity-group.png" alt="FoSCU community event – food safety and consumer rights"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-4 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">4. Engaging Religious Leaders as Food Safety Champions</h5>
+                                <p class="card-text">In collaboration with its partners, the Food Safety Coalition of Uganda (FoSCU) empowers religious leaders with evidence-based knowledge on food safety. Leveraging the World Food Day platform, FoSCU equips faith leaders to integrate food safety messages into sermons and community outreach, enabling them to effectively communicate safe food practices to their congregations. This approach harnesses the wide reach and trust of religious institutions to promote safer food handling, protect public health, and foster community-wide behavioral change.</p>
+                                <div class="updates-img-single">
+                                    <img src="static/gallery/updates-2025/religious-leaders-food-safety.png" alt="World Food Day 2024 – religious leaders and FoSCU partners">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-4 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">5. FoSCU Engagement at the CAADP Meeting: Advancing Food Safety and Quality</h5>
+                                <p class="card-text">Members of the Food Safety Coalition of Uganda (FoSCU) Steering Committee, together with representatives from member organizations, actively participated in the Comprehensive Africa Agriculture Development Programme (CAADP) meeting and its associated side events. FoSCU was represented by key board members, including Mr. Kimera Henry (Chairperson, Steering Committee), Prof. Kaaya Archileo (Chairperson, Research and Innovations), and Mr. Bwambale Benard (National Coordinator).</p>
+                                <p class="card-text mb-0">During the meeting, FoSCU made strategic presentations and substantive contributions to high-level discussions, with a strong emphasis on food safety and food quality. These engagements positioned food safety as a critical component of agricultural transformation, underscoring the need to integrate safety and quality considerations into regional and national agricultural policies, research agendas, and investment frameworks.</p>
+                                <div class="row updates-gallery cols-3">
+                                    <div class="col-md-4">
+                                        <div class="updates-img-wrap"><img src="static/gallery/updates-2025/caadp-banner-trio.png" alt="CAADP Kampala Summit – FoSCU representatives at banner"></div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="updates-img-wrap"><img src="static/gallery/updates-2025/caadp-group.png" alt="CAADP Kampala Summit – delegates at convention centre"></div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="updates-img-wrap"><img src="static/gallery/updates-2025/caadp-speaker.png" alt="CAADP Kampala Summit – speaker at podium"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-4 shadow-sm">
+                            <div class="card-body">
+                                <h5 class="card-title">6. FoSCU Launches Aflatoxins Report at National High-Level Meeting</h5>
+                                <p class="card-text">The Food Safety Coalition of Uganda (FoSCU) launched its Aflatoxins Report during a National High-Level Breakfast Meeting held ahead of World Food Safety Day of 2025 at Hotel Africana. The report was officially launched by Hon. Lt. Col. (Rtd) Bright Kanyontore Rwamirama, Minister of State for Animal Industry, in the presence of officials from key MDAs, FoSCU members, civil society organizations, academia, professional bodies, the media, and the private sector. The report provides evidence on practices that predispose foods to aflatoxin contamination, examines associated health and economic impacts, and outlines actionable recommendations to promote aflatoxin-free food systems in Uganda.</p>
+                                <div class="row updates-gallery cols-3">
+                                    <div class="col-md-4">
+                                        <div class="updates-img-wrap"><img src="static/gallery/updates-2025/aflatoxins-report-group.png" alt="FoSCU Aflatoxins Report – group with report sign"></div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="updates-img-wrap"><img src="static/gallery/updates-2025/aflatoxins-report-signing.png" alt="FoSCU Aflatoxins Report – signing ceremony"></div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="updates-img-wrap"><img src="static/gallery/updates-2025/aflatoxins-report-launch.png" alt="FoSCU Aflatoxins Report – launch event group"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="photos container">
             <h3 class="text-center">Our Events Photos</h3>
             <div class="container">

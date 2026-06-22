@@ -427,10 +427,6 @@ a h6 {
     object-fit: cover;
 }
 
-img:hover {
-    transition: all .2s;
-    transform: scale(.8);
-}
 
 .borderless table {
     border-top-style: none;
@@ -583,8 +579,4 @@ img:hover {
 
 .photos .img-fluid {
     border-radius: .2rem;
-}
-
-.photos img:hover {
-    transform: scale(1);
 }

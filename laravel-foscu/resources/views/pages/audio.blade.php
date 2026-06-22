@@ -19,106 +19,144 @@
                 Back to Information Resources
             </a>
         </div>
-        
+
         <!-- Role of Consumers in Food Safety -->
         <div class="mb-12">
             <h2 class="text-2xl font-semibold mb-6 text-primary">Role of Consumers in Food Safety</h2>
             <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-white rounded-lg shadow-lg p-6">
-                    <div class="mb-4">
-                        <audio controls class="w-full">
-                            <source src="{{ asset('audio-files/Consumers/Audio_English_food_safety_hazards_CONSUMER_ROLE.mp3') }}" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 flex items-center gap-5">
+                    <button onclick="toggleAudio(this, 'consumer-en')" class="flex-shrink-0 w-14 h-14 rounded-full bg-primary hover:bg-orange-600 text-white flex items-center justify-center transition-colors duration-200">
+                        <i class="fas fa-play text-lg play-icon"></i>
+                    </button>
+                    <audio id="consumer-en" src="{{ asset('audio-files/Consumers/Audio_English_food_safety_hazards_CONSUMER_ROLE.mp3') }}" preload="none"></audio>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800">English</h3>
+                        <p class="text-gray-600 text-sm">Food safety hazards and consumer role</p>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-800">English</h3>
-                    <p class="text-gray-600 text-sm">Food safety hazards and consumer role</p>
                 </div>
-                
-                <div class="bg-white rounded-lg shadow-lg p-6">
-                    <div class="mb-4">
-                        <audio controls class="w-full">
-                            <source src="{{ asset('audio-files/Consumers/Audio_luganda_food_safety_hazards_CONSUMER_ROLE.mp3') }}" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 flex items-center gap-5">
+                    <button onclick="toggleAudio(this, 'consumer-lg')" class="flex-shrink-0 w-14 h-14 rounded-full bg-primary hover:bg-orange-600 text-white flex items-center justify-center transition-colors duration-200">
+                        <i class="fas fa-play text-lg play-icon"></i>
+                    </button>
+                    <audio id="consumer-lg" src="{{ asset('audio-files/Consumers/Audio_luganda_food_safety_hazards_CONSUMER_ROLE.mp3') }}" preload="none"></audio>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800">Luganda</h3>
+                        <p class="text-gray-600 text-sm">Food safety hazards and consumer role</p>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-800">Luganda</h3>
-                    <p class="text-gray-600 text-sm">Food safety hazards and consumer role</p>
                 </div>
-                
-                <div class="bg-white rounded-lg shadow-lg p-6">
-                    <div class="mb-4">
-                        <audio controls class="w-full">
-                            <source src="{{ asset('audio-files/Consumers/Audio_Lumasaba_food_safety_hazards_CONSUMER_ROLE.mp3') }}" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 flex items-center gap-5">
+                    <button onclick="toggleAudio(this, 'consumer-lm')" class="flex-shrink-0 w-14 h-14 rounded-full bg-primary hover:bg-orange-600 text-white flex items-center justify-center transition-colors duration-200">
+                        <i class="fas fa-play text-lg play-icon"></i>
+                    </button>
+                    <audio id="consumer-lm" src="{{ asset('audio-files/Consumers/Audio_Lumasaba_food_safety_hazards_CONSUMER_ROLE.mp3') }}" preload="none"></audio>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800">Lumasaba</h3>
+                        <p class="text-gray-600 text-sm">Food safety hazards and consumer role</p>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-800">Lumasaba</h3>
-                    <p class="text-gray-600 text-sm">Food safety hazards and consumer role</p>
                 </div>
-                
-                <div class="bg-white rounded-lg shadow-lg p-6">
-                    <div class="mb-4">
-                        <audio controls class="w-full">
-                            <source src="{{ asset('audio-files/Consumers/Audio_Runyoro_food_safety_hazards_CONSUMER_ROLE.mp3') }}" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 flex items-center gap-5">
+                    <button onclick="toggleAudio(this, 'consumer-ry')" class="flex-shrink-0 w-14 h-14 rounded-full bg-primary hover:bg-orange-600 text-white flex items-center justify-center transition-colors duration-200">
+                        <i class="fas fa-play text-lg play-icon"></i>
+                    </button>
+                    <audio id="consumer-ry" src="{{ asset('audio-files/Consumers/Audio_Runyoro_food_safety_hazards_CONSUMER_ROLE.mp3') }}" preload="none"></audio>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800">Runyoro</h3>
+                        <p class="text-gray-600 text-sm">Food safety hazards and consumer role</p>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-800">Runyoro</h3>
-                    <p class="text-gray-600 text-sm">Food safety hazards and consumer role</p>
                 </div>
+
             </div>
         </div>
-        
+
         <!-- Role of Farmers in Food Safety -->
         <div>
             <h2 class="text-2xl font-semibold mb-6 text-primary">Role of Farmers in Food Safety</h2>
             <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-white rounded-lg shadow-lg p-6">
-                    <div class="mb-4">
-                        <audio controls class="w-full">
-                            <source src="{{ asset('audio-files/Farmers/Audio_English_Chemical_food_contamination_FARMER_ROLE.mp3') }}" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 flex items-center gap-5">
+                    <button onclick="toggleAudio(this, 'farmer-en')" class="flex-shrink-0 w-14 h-14 rounded-full bg-primary hover:bg-orange-600 text-white flex items-center justify-center transition-colors duration-200">
+                        <i class="fas fa-play text-lg play-icon"></i>
+                    </button>
+                    <audio id="farmer-en" src="{{ asset('audio-files/Farmers/Audio_English_Chemical_food_contamination_FARMER_ROLE.mp3') }}" preload="none"></audio>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800">English</h3>
+                        <p class="text-gray-600 text-sm">Chemical food contamination and farmer role</p>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-800">English</h3>
-                    <p class="text-gray-600 text-sm">Chemical food contamination and farmer role</p>
                 </div>
-                
-                <div class="bg-white rounded-lg shadow-lg p-6">
-                    <div class="mb-4">
-                        <audio controls class="w-full">
-                            <source src="{{ asset('audio-files/Farmers/Audio_luganda_Chemical_food_contamination_FARMER_ROLE.mp3') }}" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 flex items-center gap-5">
+                    <button onclick="toggleAudio(this, 'farmer-lg')" class="flex-shrink-0 w-14 h-14 rounded-full bg-primary hover:bg-orange-600 text-white flex items-center justify-center transition-colors duration-200">
+                        <i class="fas fa-play text-lg play-icon"></i>
+                    </button>
+                    <audio id="farmer-lg" src="{{ asset('audio-files/Farmers/Audio_luganda_Chemical_food_contamination_FARMER_ROLE.mp3') }}" preload="none"></audio>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800">Luganda</h3>
+                        <p class="text-gray-600 text-sm">Chemical food contamination and farmer role</p>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-800">Luganda</h3>
-                    <p class="text-gray-600 text-sm">Chemical food contamination and farmer role</p>
                 </div>
-                
-                <div class="bg-white rounded-lg shadow-lg p-6">
-                    <div class="mb-4">
-                        <audio controls class="w-full">
-                            <source src="{{ asset('audio-files/Farmers/Audio_lumasaba_Chemical_food_contamination_FARMER_ROLE.mp3') }}" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 flex items-center gap-5">
+                    <button onclick="toggleAudio(this, 'farmer-lm')" class="flex-shrink-0 w-14 h-14 rounded-full bg-primary hover:bg-orange-600 text-white flex items-center justify-center transition-colors duration-200">
+                        <i class="fas fa-play text-lg play-icon"></i>
+                    </button>
+                    <audio id="farmer-lm" src="{{ asset('audio-files/Farmers/Audio_lumasaba_Chemical_food_contamination_FARMER_ROLE.mp3') }}" preload="none"></audio>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800">Lumasaba</h3>
+                        <p class="text-gray-600 text-sm">Chemical food contamination and farmer role</p>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-800">Lumasaba</h3>
-                    <p class="text-gray-600 text-sm">Chemical food contamination and farmer role</p>
                 </div>
-                
-                <div class="bg-white rounded-lg shadow-lg p-6">
-                    <div class="mb-4">
-                        <audio controls class="w-full">
-                            <source src="{{ asset('audio-files/Farmers/Audio_Runyoro_Chemical_food_contamination_FARMER_ROLE.mp3') }}" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 flex items-center gap-5">
+                    <button onclick="toggleAudio(this, 'farmer-ry')" class="flex-shrink-0 w-14 h-14 rounded-full bg-primary hover:bg-orange-600 text-white flex items-center justify-center transition-colors duration-200">
+                        <i class="fas fa-play text-lg play-icon"></i>
+                    </button>
+                    <audio id="farmer-ry" src="{{ asset('audio-files/Farmers/Audio_Runyoro_Chemical_food_contamination_FARMER_ROLE.mp3') }}" preload="none"></audio>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800">Runyoro</h3>
+                        <p class="text-gray-600 text-sm">Chemical food contamination and farmer role</p>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-800">Runyoro</h3>
-                    <p class="text-gray-600 text-sm">Chemical food contamination and farmer role</p>
                 </div>
+
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    let currentAudio = null;
+    let currentBtn = null;
+
+    function toggleAudio(btn, id) {
+        const audio = document.getElementById(id);
+        const icon = btn.querySelector('.play-icon');
+
+        if (currentAudio && currentAudio !== audio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+            currentBtn.querySelector('.play-icon').classList.replace('fa-pause', 'fa-play');
+        }
+
+        if (audio.paused) {
+            audio.play();
+            icon.classList.replace('fa-play', 'fa-pause');
+            currentAudio = audio;
+            currentBtn = btn;
+        } else {
+            audio.pause();
+            icon.classList.replace('fa-pause', 'fa-play');
+            currentAudio = null;
+            currentBtn = null;
+        }
+
+        audio.addEventListener('ended', () => {
+            icon.classList.replace('fa-pause', 'fa-play');
+            currentAudio = null;
+            currentBtn = null;
+        }, { once: true });
+    }
+</script>
 @endsection
