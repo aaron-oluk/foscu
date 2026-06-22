@@ -1,61 +1,155 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# FoSCU Website
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Official website for the **Food Safety Coalition of Uganda (FoSCU)** — a coalition of civil society organisations working to strengthen food safety policy, advocacy, and public awareness across Uganda.
 
-## About Laravel
+Built with Laravel 12, Tailwind CSS, and PostgreSQL.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Requirements
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- PHP 8.2+
+- Composer
+- Node.js & npm
+- PostgreSQL
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Local Setup
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 1. Install dependencies
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash
+composer install
+npm install
+```
 
-## Laravel Sponsors
+### 2. Configure environment
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-### Premium Partners
+Edit `.env` and set your database credentials:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```env
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=laravel_foscu
+DB_USERNAME=your_db_user
+DB_PASSWORD=your_db_password
+```
 
-## Contributing
+### 3. Run migrations and seed data
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+php artisan migrate
+php artisan db:seed
+```
 
-## Code of Conduct
+This seeds:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- An admin user (`admin@admin.com` / `password`)
+- 43 recent events from FoSCU's event history
 
-## Security Vulnerabilities
+### 4. Build assets
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+npm run dev       # development with hot reload
+npm run build     # production build
+```
 
-## License
+### 5. Start the server
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+php artisan serve
+```
+
+The site runs at `http://localhost:8000`.
+
+---
+
+## Admin Access
+
+The admin panel is accessible at `/admin-access` (hidden from the public nav). Log in with the seeded admin credentials or any account created via the database.
+
+Admin capabilities:
+
+- **Events** — create, edit, and delete upcoming and recent events
+- **Event Photos** — manage photo gallery categories and images shown on the events section
+- **Logos** — manage partner/member organisation logos displayed on the home page
+
+---
+
+## Public Pages
+
+| Route | Page |
+| --- | --- |
+| `/` | Home |
+| `/focus` | Our Focus |
+| `/who-we-are` | Who We Are |
+| `/our-work` | Our Work |
+| `/updates` | FoSCU Updates (news & activities) |
+| `/information-resources` | Information Resources hub |
+| `/videos` | Videos |
+| `/audio` | Audio |
+| `/posters` | Posters |
+| `/articles` | Articles |
+| `/papers` | Papers |
+| `/reports` | Reports |
+| `/research-briefs` | Research Briefs |
+| `/policy-briefs` | Policy Briefs |
+| `/e-learning` | E-Learning |
+| `/relevant-sites` | Relevant Sites |
+
+---
+
+## Project Structure
+
+```text
+app/
+  Http/Controllers/
+    HomeController.php          — all public page methods
+    DownloadController.php      — tracked PDF downloads
+    Admin/EventController.php   — admin event management
+    Admin/LogoController.php    — admin logo management
+    EventPhotoController.php    — admin event photo management
+    Api/EventPhotosApiController.php — JSON API for event photos
+
+resources/views/
+  layouts/
+    main.blade.php              — public site layout (nav, footer)
+    guest.blade.php             — auth pages layout (login)
+  home.blade.php                — home page
+  pages/                        — all public page views
+  dashboard/                    — admin panel views
+
+public/
+  audio-files/                  — MP3 audio recordings
+  briefs/                       — PDF articles, reports, research briefs
+  gallery/                      — event and updates photo galleries
+  images/                       — site images and logos
+  poster-files/                 — poster images (JPG/PNG)
+  video/                        — video files
+```
+
+---
+
+## PDF Downloads
+
+PDFs are stored directly in `public/briefs/` and served through the `/track-download` route, which logs each download to the `downloads` table before streaming the file. Sub-directories:
+
+- `public/briefs/articles/`
+- `public/briefs/reports/`
+- `public/briefs/research/`
+- `public/briefs/policies/`
+
+---
+
+## Notes
+
+- The `public/poster-files/` directory is intentionally named to avoid a conflict with the `/posters` Laravel route. Do not rename it back to `public/posters/`.
+- PHP's built-in server (`php artisan serve`) does not read `.htaccess`. For Apache deployments, the root `.htaccess` rewrites requests through `public/index.php`.
+- Upcoming events are managed through the admin panel, not seeded.

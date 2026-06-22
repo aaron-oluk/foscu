@@ -126,6 +126,62 @@
     </div>
 </div>
 
+<!-- 2025 Updates Section -->
+<div class="bg-white py-16">
+    <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-4 text-orange-500">FoSCU 2025 Updates</h2>
+            <p class="text-center text-gray-600 mb-12">A snapshot of our activities and milestones this year</p>
+
+            <!-- Aflatoxins Report -->
+            <div class="mb-12">
+                <h3 class="text-xl font-semibold text-gray-700 mb-4 border-l-4 border-orange-500 pl-3">Aflatoxins Report Launch</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <img src="{{ asset('gallery/updates-2025/aflatoxins-report-launch.png') }}" alt="Aflatoxins Report Launch" class="w-full h-56 object-cover rounded-lg shadow">
+                    <img src="{{ asset('gallery/updates-2025/aflatoxins-report-signing.png') }}" alt="Aflatoxins Report Signing" class="w-full h-56 object-cover rounded-lg shadow">
+                    <img src="{{ asset('gallery/updates-2025/aflatoxins-report-group.png') }}" alt="Aflatoxins Report Group" class="w-full h-56 object-cover rounded-lg shadow">
+                </div>
+            </div>
+
+            <!-- CAADP -->
+            <div class="mb-12">
+                <h3 class="text-xl font-semibold text-gray-700 mb-4 border-l-4 border-orange-500 pl-3">CAADP Engagement</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <img src="{{ asset('gallery/updates-2025/caadp-banner-trio.png') }}" alt="CAADP Banner" class="w-full h-56 object-cover rounded-lg shadow">
+                    <img src="{{ asset('gallery/updates-2025/caadp-speaker.png') }}" alt="CAADP Speaker" class="w-full h-56 object-cover rounded-lg shadow">
+                    <img src="{{ asset('gallery/updates-2025/caadp-group.png') }}" alt="CAADP Group" class="w-full h-56 object-cover rounded-lg shadow">
+                </div>
+            </div>
+
+            <!-- Community Capacity & Evidence -->
+            <div class="mb-12">
+                <h3 class="text-xl font-semibold text-gray-700 mb-4 border-l-4 border-orange-500 pl-3">Community Capacity Building &amp; Evidence Launch</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <img src="{{ asset('gallery/updates-2025/community-capacity-workshop.png') }}" alt="Community Capacity Workshop" class="w-full h-56 object-cover rounded-lg shadow">
+                    <img src="{{ asset('gallery/updates-2025/community-capacity-group.png') }}" alt="Community Capacity Group" class="w-full h-56 object-cover rounded-lg shadow">
+                    <img src="{{ asset('gallery/updates-2025/launching-evidence-crop-protection.png') }}" alt="Launching Evidence on Crop Protection" class="w-full h-56 object-cover rounded-lg shadow">
+                </div>
+            </div>
+
+            <!-- World Food Safety Day & Religious Leaders -->
+            <div>
+                <h3 class="text-xl font-semibold text-gray-700 mb-4 border-l-4 border-orange-500 pl-3">World Food Safety Day &amp; Outreach</h3>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <img src="{{ asset('gallery/updates-2025/wfsd-walk-1.png') }}" alt="WFSD Walk" class="w-full h-56 object-cover rounded-lg shadow">
+                    <img src="{{ asset('gallery/updates-2025/wfsd-walk-2.png') }}" alt="WFSD Walk 2" class="w-full h-56 object-cover rounded-lg shadow">
+                    <img src="{{ asset('gallery/updates-2025/wfsd-signs.png') }}" alt="WFSD Signs" class="w-full h-56 object-cover rounded-lg shadow">
+                    <img src="{{ asset('gallery/updates-2025/religious-leaders-food-safety.png') }}" alt="Religious Leaders Food Safety" class="w-full h-56 object-cover rounded-lg shadow">
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-10">
+            <a href="{{ route('updates') }}" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-200">
+                View All Updates
+            </a>
+        </div>
+    </div>
+</div>
+
 <!-- Events Section -->
 <div class="container mx-auto px-4 py-12">
     <div class="max-w-6xl mx-auto">

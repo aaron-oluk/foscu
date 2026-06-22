@@ -221,4 +221,9 @@ class HomeController extends Controller
         
         return view('pages.relevant-sites', compact('sites'));
     }
+
+    public function updates()
+    {
+        return view('pages.updates');
+    }
 }
