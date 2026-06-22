@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\RecentEvent;
 use App\Models\Logo;
+use App\Models\EventCategory;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,8 +15,9 @@ class HomeController extends Controller
         $upcomingEvents = Event::orderBy('eventdate', 'desc')->get();
         $recentEvents = RecentEvent::orderBy('eventdate', 'desc')->limit(4)->get();
         $logos = Logo::all();
+        $eventCategories = EventCategory::active()->with('activePhotos')->ordered()->get();
 
-        return view('home', compact('upcomingEvents', 'recentEvents', 'logos'));
+        return view('home', compact('upcomingEvents', 'recentEvents', 'logos', 'eventCategories'));
     }
 
     public function focus()

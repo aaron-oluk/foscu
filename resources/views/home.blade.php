@@ -17,7 +17,7 @@
             <h3 class="text-3xl font-bold text-center mb-8 text-orange-500">Food Safety News</h3>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+                <div class="overflow-hidden">
                     <blockquote class="twitter-tweet" data-media-max-width="560">
                         <p lang="en" dir="ltr">FOOD SAFETY ALERT!!<br><br>Watch and learn how SEX-PHEROMONE TRAPS are used to manage
                             FRUIT FLIES!!!<br>NON-CHEMICAL PEST MANAGEMENT promotes food safety.<br><br>Full video 👉 <a
@@ -30,7 +30,7 @@
                     </blockquote>
                 </div>
 
-                <div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+                <div class="overflow-hidden">
                     <blockquote class="twitter-tweet" data-media-max-width="560">
                         <p lang="en" dir="ltr">FOOD SAFETY ALERT!!<br><br>Watch and learn how SEX-PHEROMONE TRAPS are used to manage
                             FRUIT FLIES!!!<br>NON-CHEMICAL PEST MANAGEMENT promotes food safety.<br><br>Full video 👉 <a
@@ -43,7 +43,7 @@
                     </blockquote>
                 </div>
 
-                <div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+                <div class="overflow-hidden">
                     <blockquote class="twitter-tweet" data-media-max-width="560">
                         <p lang="en" dir="ltr">FOOD SAFETY ALERT!!<br><br>PESTICIDES ARE DESIGNED TO HARM!!<br>Watch and learn how
                             their lifecycle can be properly managed to protect human health and the environment!!<br><br>Full video 👉
@@ -197,6 +197,100 @@
 </div>
 
 <!-- Our Events Photos Section -->
+@if($eventCategories->count() > 0)
+<div class="bg-white py-16">
+    <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-12 text-orange-500">Our Events Photos</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                @foreach($eventCategories as $category)
+                    @if($category->activePhotos->count() > 0)
+                        @php
+                            $coverPhoto = $category->activePhotos->first();
+                            $totalPhotos = $category->activePhotos->count();
+                        @endphp
+                        <div class="bg-white rounded-lg shadow-lg overflow-hidden group cursor-pointer event-photo-card" 
+                             onclick="openGallery('{{ $category->slug }}', '{{ $category->name }}')">
+                            <div class="h-64 bg-cover bg-center relative" style="background-image: url('{{ $coverPhoto->image_url }}');">
+                                <div class="h-full bg-black bg-opacity-30 group-hover:bg-opacity-50 transition-all duration-300 flex items-end">
+                                    <div class="p-6 text-white w-full">
+                                        <h3 class="text-xl font-bold mb-2">{{ $category->name }}</h3>
+                                        @if($category->description)
+                                            <p class="text-sm opacity-90 mb-2">{{ Str::limit($category->description, 80) }}</p>
+                                        @endif
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-sm bg-white bg-opacity-20 px-2 py-1 rounded">
+                                                {{ $totalPhotos }} {{ $totalPhotos == 1 ? 'photo' : 'photos' }}
+                                            </span>
+                                            <div class="flex items-center text-sm">
+                                                <i class="fas fa-images mr-1"></i>
+                                                View Gallery
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+            
+            @if($eventCategories->sum(function($category) { return $category->activePhotos->count(); }) == 0)
+                <div class="text-center py-16">
+                    <div class="bg-gray-50 rounded-lg p-8">
+                        <i class="fas fa-camera text-4xl text-gray-400 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-600 mb-2">No Event Photos Yet</h3>
+                        <p class="text-gray-500">Event photos will be displayed here once they are uploaded.</p>
+                    </div>
+                </div>
+            @endif
+        </div>
+    </div>
+</div>
+
+<!-- Photo Gallery Modal -->
+<div id="photoGalleryModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center">
+    <div class="relative w-full h-full max-w-6xl mx-auto p-4">
+        <!-- Close Button -->
+        <button onclick="closeGallery()" class="absolute top-4 right-4 text-white text-2xl hover:text-gray-300 z-10">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <!-- Gallery Header -->
+        <div class="absolute top-4 left-4 text-white z-10">
+            <h3 id="galleryTitle" class="text-2xl font-bold mb-2"></h3>
+            <p id="galleryCounter" class="text-sm opacity-80"></p>
+        </div>
+        
+        <!-- Main Photo -->
+        <div class="flex items-center justify-center h-full">
+            <div class="relative max-w-4xl max-h-full">
+                <img id="currentPhoto" src="" alt="" class="max-w-full max-h-full object-contain">
+                
+                <!-- Navigation Arrows -->
+                <button onclick="previousPhoto()" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-3xl hover:text-gray-300 bg-black bg-opacity-50 rounded-full w-12 h-12 flex items-center justify-center gallery-nav-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button onclick="nextPhoto()" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-3xl hover:text-gray-300 bg-black bg-opacity-50 rounded-full w-12 h-12 flex items-center justify-center gallery-nav-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Thumbnail Strip -->
+        <div class="absolute bottom-4 left-4 right-4">
+            <div class="flex justify-center">
+                <div id="thumbnailStrip" class="flex space-x-2 overflow-x-auto max-w-full pb-2">
+                    <!-- Thumbnails will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@else
+<!-- Fallback to original static photos if no categories exist -->
 <div class="bg-white py-16">
     <div class="container mx-auto px-4">
         <div class="max-w-6xl mx-auto">
@@ -228,6 +322,7 @@
         </div>
     </div>
 </div>
+@endif
 
 <!-- Partners Section -->
 @if($logos->count() > 0)
@@ -256,10 +351,10 @@
                                     @if($logo->image)
                                         @if($logo->website_url)
                                             <a href="{{ $logo->website_url }}" target="_blank" class="block w-full h-full">
-                                                <img src="{{ asset($logo->image) }}" alt="{{ $logo->partner_name }}" class="w-full h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
+                                                <img src="{{ asset('storage/' . $logo->image) }}" alt="{{ $logo->partner_name }}" class="w-full h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
                                             </a>
                                         @else
-                                            <img src="{{ asset($logo->image) }}" alt="{{ $logo->partner_name }}" class="w-full h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
+                                            <img src="{{ asset('storage/' . $logo->image) }}" alt="{{ $logo->partner_name }}" class="w-full h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
                                         @endif
                                     @else
                                         <div class="w-full h-full bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center rounded-xl">
@@ -281,30 +376,20 @@
                         <!-- Duplicate for seamless loop -->
                         @foreach($logos->where('status', 'active')->sortBy('display_order') as $logo)
                         <div class="carousel-item flex-shrink-0 mx-4">
-                            <div class="group relative">
-                                <!-- Logo Container -->
-                                <div class="w-36 h-28 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105 border border-gray-100/50 p-4 flex items-center justify-center">
-                                    @if($logo->image)
-                                        @if($logo->website_url)
-                                            <a href="{{ $logo->website_url }}" target="_blank" class="block w-full h-full">
-                                                <img src="{{ asset($logo->image) }}" alt="{{ $logo->partner_name }}" class="w-full h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
-                                            </a>
-                                        @else
-                                            <img src="{{ asset($logo->image) }}" alt="{{ $logo->partner_name }}" class="w-full h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
-                                        @endif
+                            <div class="w-36 h-28 bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 p-4 flex items-center justify-center">
+                                @if($logo->image)
+                                    @if($logo->website_url)
+                                        <a href="{{ $logo->website_url }}" target="_blank" class="block w-full h-full">
+                                            <img src="{{ asset('storage/' . $logo->image) }}" alt="{{ $logo->partner_name }}" class="w-full h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
+                                        </a>
                                     @else
-                                        <div class="w-full h-full bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center rounded-xl">
-                                            <span class="text-orange-600 text-xs text-center font-medium">{{ $logo->partner_name }}</span>
-                                        </div>
+                                        <img src="{{ asset('storage/' . $logo->image) }}" alt="{{ $logo->partner_name }}" class="w-full h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
                                     @endif
-                                </div>
-                                
-                                <!-- Partner Name Tooltip -->
-                                <div class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
-                                    <div class="bg-gray-800 text-white text-xs px-3 py-1 rounded-lg whitespace-nowrap">
-                                        {{ $logo->partner_name }}
+                                @else
+                                    <div class="w-full h-full bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center rounded-xl">
+                                        <span class="text-orange-600 text-xs text-center font-medium">{{ $logo->partner_name }}</span>
                                     </div>
-                                </div>
+                                @endif
                             </div>
                         </div>
                         @endforeach
@@ -407,6 +492,62 @@
     .bg-gradient-to-r {
         background-image: linear-gradient(to right, var(--tw-gradient-stops));
     }
+    
+    /* Photo Gallery Modal Styles */
+    #photoGalleryModal {
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+    }
+    
+    #photoGalleryModal img {
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        border-radius: 8px;
+    }
+    
+    /* Thumbnail strip styling */
+    #thumbnailStrip {
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+    }
+    
+    #thumbnailStrip::-webkit-scrollbar {
+        height: 4px;
+    }
+    
+    #thumbnailStrip::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    #thumbnailStrip::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 2px;
+    }
+    
+    #thumbnailStrip::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.5);
+    }
+    
+    /* Gallery navigation buttons */
+    .gallery-nav-btn {
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+    
+    .gallery-nav-btn:hover {
+        background-color: rgba(0, 0, 0, 0.7);
+        transform: scale(1.1);
+    }
+    
+    /* Event photo cards hover effect */
+    .event-photo-card {
+        transition: all 0.3s ease;
+    }
+    
+    .event-photo-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
 </style>
 @endpush
 
@@ -418,9 +559,114 @@ function toggleAccordion(id) {
     element.classList.toggle('hidden');
 }
 
+// Photo Gallery Variables
+let currentGalleryData = [];
+let currentPhotoIndex = 0;
+let currentCategorySlug = '';
+
+// Open Gallery Function
+function openGallery(categorySlug, categoryName) {
+    currentCategorySlug = categorySlug;
+    
+    // Show loading state
+    document.getElementById('photoGalleryModal').classList.remove('hidden');
+    document.getElementById('galleryTitle').textContent = categoryName;
+    document.getElementById('galleryCounter').textContent = 'Loading...';
+    
+    // Fetch photos for this category
+    fetch(`/api/event-photos/${categorySlug}`)
+        .then(response => response.json())
+        .then(data => {
+            currentGalleryData = data.photos;
+            currentPhotoIndex = 0;
+            loadGallery();
+        })
+        .catch(error => {
+            console.error('Error loading gallery:', error);
+            closeGallery();
+        });
+}
+
+// Close Gallery Function
+function closeGallery() {
+    document.getElementById('photoGalleryModal').classList.add('hidden');
+    currentGalleryData = [];
+    currentPhotoIndex = 0;
+}
+
+// Load Gallery Function
+function loadGallery() {
+    if (currentGalleryData.length === 0) return;
+    
+    const currentPhoto = currentGalleryData[currentPhotoIndex];
+    
+    // Update main photo
+    document.getElementById('currentPhoto').src = currentPhoto.image_url;
+    document.getElementById('currentPhoto').alt = currentPhoto.alt_text || currentPhoto.title;
+    
+    // Update counter
+    document.getElementById('galleryCounter').textContent = 
+        `${currentPhotoIndex + 1} of ${currentGalleryData.length}`;
+    
+    // Load thumbnails
+    loadThumbnails();
+}
+
+// Load Thumbnails Function
+function loadThumbnails() {
+    const thumbnailStrip = document.getElementById('thumbnailStrip');
+    thumbnailStrip.innerHTML = '';
+    
+    currentGalleryData.forEach((photo, index) => {
+        const thumbnail = document.createElement('div');
+        thumbnail.className = `w-16 h-16 bg-cover bg-center rounded cursor-pointer border-2 transition-all duration-200 ${
+            index === currentPhotoIndex ? 'border-white' : 'border-transparent hover:border-gray-300'
+        }`;
+        thumbnail.style.backgroundImage = `url('${photo.image_url}')`;
+        thumbnail.onclick = () => {
+            currentPhotoIndex = index;
+            loadGallery();
+        };
+        thumbnailStrip.appendChild(thumbnail);
+    });
+}
+
+// Navigation Functions
+function previousPhoto() {
+    if (currentGalleryData.length === 0) return;
+    currentPhotoIndex = (currentPhotoIndex - 1 + currentGalleryData.length) % currentGalleryData.length;
+    loadGallery();
+}
+
+function nextPhoto() {
+    if (currentGalleryData.length === 0) return;
+    currentPhotoIndex = (currentPhotoIndex + 1) % currentGalleryData.length;
+    loadGallery();
+}
+
+// Keyboard Navigation
+document.addEventListener('keydown', function(e) {
+    if (!document.getElementById('photoGalleryModal').classList.contains('hidden')) {
+        switch(e.key) {
+            case 'Escape':
+                closeGallery();
+                break;
+            case 'ArrowLeft':
+                previousPhoto();
+                break;
+            case 'ArrowRight':
+                nextPhoto();
+                break;
+        }
+    }
+});
+
 document.addEventListener('DOMContentLoaded', function() {
     // Auto-show the first accordion item
-    document.getElementById('upcoming').classList.remove('hidden');
+    const upcomingElement = document.getElementById('upcoming');
+    if (upcomingElement) {
+        upcomingElement.classList.remove('hidden');
+    }
     
     // Carousel hover functionality
     const carousel = document.getElementById('partners-carousel');
