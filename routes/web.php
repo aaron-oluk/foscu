@@ -30,6 +30,7 @@ Route::get('/policy-briefs', [App\Http\Controllers\HomeController::class, 'polic
 Route::get('/e-learning', [App\Http\Controllers\HomeController::class, 'eLearning'])->name('e-learning');
 Route::get('/audio', [App\Http\Controllers\HomeController::class, 'audio'])->name('audio');
 Route::get('/relevant-sites', [App\Http\Controllers\HomeController::class, 'relevantSites'])->name('relevant-sites');
+Route::get('/updates', [App\Http\Controllers\HomeController::class, 'updates'])->name('updates');
 
 // Legacy route support
 Route::get('/infovid', [App\Http\Controllers\HomeController::class, 'videos'])->name('infovid');

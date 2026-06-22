@@ -57,23 +57,11 @@
                         </li>
                         <li><a class="font-medium px-4 py-2 rounded-md text-white bg-white bg-opacity-10 backdrop-blur-sm hover:bg-opacity-20 transition-colors duration-200 {{ request()->routeIs('our-work') ? 'bg-opacity-25 font-semibold' : '' }}" href="{{ route('our-work') }}">Our Work</a></li>
                         <li><a class="font-medium px-4 py-2 rounded-md text-white bg-white bg-opacity-20 backdrop-blur-sm hover:bg-opacity-30 transition-colors duration-200 {{ request()->routeIs('information-resources') || request()->routeIs('videos') || request()->routeIs('research') || request()->routeIs('reports') || request()->routeIs('posters') || request()->routeIs('articles') || request()->routeIs('audio') || request()->routeIs('policy-briefs') || request()->routeIs('e-learning') || request()->routeIs('relevant-sites') ? 'bg-opacity-30 font-semibold' : '' }}" href="{{ route('information-resources') }}">Information Resources</a></li>
+                        <li><a class="font-medium px-4 py-2 rounded-md text-white bg-white bg-opacity-10 backdrop-blur-sm hover:bg-opacity-20 transition-colors duration-200 {{ request()->routeIs('updates') ? 'bg-opacity-25 font-semibold' : '' }}" href="{{ route('updates') }}">Updates</a></li>
                     </ul>
                 </div>
                 
-                <!-- Auth Links -->
-                <div class="hidden lg:flex items-center space-x-4">
-                    @auth
-                        <a href="{{ route('admin.events.index') }}" class="font-medium px-4 py-2 rounded-md text-white bg-white bg-opacity-10 backdrop-blur-sm hover:bg-opacity-20 transition-colors duration-200">
-                            <i class="fas fa-cog mr-1"></i> Admin
-                        </a>
-                        <form method="POST" action="{{ route('logout') }}" class="inline">
-                            @csrf
-                            <button type="submit" class="font-medium px-4 py-2 rounded-md text-white bg-white bg-opacity-10 backdrop-blur-sm hover:bg-opacity-20 transition-colors duration-200">
-                                <i class="fas fa-sign-out-alt mr-1"></i> Logout
-                            </button>
-                        </form>
-                    @endauth
-                </div>
+                <div class="hidden lg:flex items-center"></div>
             </div>
             
             <!-- Mobile Menu -->
@@ -84,15 +72,7 @@
                         <li><a class="block font-medium px-4 py-2 rounded-md text-white bg-white bg-opacity-10 backdrop-blur-sm hover:bg-opacity-20 transition-colors duration-200 {{ request()->routeIs('who-we-are') ? 'bg-opacity-25 font-semibold' : '' }}" href="{{ route('who-we-are') }}">Who We Are</a></li>
                         <li><a class="block font-medium px-4 py-2 rounded-md text-white bg-white bg-opacity-10 backdrop-blur-sm hover:bg-opacity-20 transition-colors duration-200 {{ request()->routeIs('our-work') ? 'bg-opacity-25 font-semibold' : '' }}" href="{{ route('our-work') }}">Our Work</a></li>
                         <li><a class="block font-medium px-4 py-2 rounded-md text-white bg-white bg-opacity-20 backdrop-blur-sm hover:bg-opacity-30 transition-colors duration-200 {{ request()->routeIs('information-resources') || request()->routeIs('videos') || request()->routeIs('research') || request()->routeIs('reports') || request()->routeIs('posters') || request()->routeIs('articles') || request()->routeIs('audio') || request()->routeIs('policy-briefs') || request()->routeIs('e-learning') || request()->routeIs('relevant-sites') ? 'bg-opacity-30 font-semibold' : '' }}" href="{{ route('information-resources') }}">Information Resources</a></li>
-                        @auth
-                            <li><a class="block font-medium px-4 py-2 rounded-md text-white bg-white bg-opacity-10 backdrop-blur-sm hover:bg-opacity-20 transition-colors duration-200" href="{{ route('admin.events.index') }}">Admin</a></li>
-                            <li>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button type="submit" class="font-medium px-4 py-2 rounded-md text-white bg-white bg-opacity-10 backdrop-blur-sm hover:bg-opacity-20 transition-colors duration-200 w-full text-left">Logout</button>
-                                </form>
-                            </li>
-                        @endauth
+                        <li><a class="block font-medium px-4 py-2 rounded-md text-white bg-white bg-opacity-10 backdrop-blur-sm hover:bg-opacity-20 transition-colors duration-200 {{ request()->routeIs('updates') ? 'bg-opacity-25 font-semibold' : '' }}" href="{{ route('updates') }}">Updates</a></li>
                     </ul>
                 </div>
             </div>
