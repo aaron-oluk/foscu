@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- Hero Section -->
-<div class="relative h-96 bg-cover bg-center" style="background-image: url('{{ asset('posters/Poster5.jpg') }}');">
+<div class="relative h-96 bg-cover bg-center" style="background-image: url('{{ asset('poster-files/Poster5.jpg') }}');">
     <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
         <div class="text-center text-white px-4">
             <h1 class="text-5xl font-bold mb-4">Audio Resources</h1>

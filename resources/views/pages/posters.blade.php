@@ -25,16 +25,16 @@
             <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                 <div class="aspect-[3/4]">
                     <img 
-                        src="{{ asset('posters/Poster' . $i . '.jpg') }}" 
+                        src="{{ asset('poster-files/Poster' . $i . '.jpg') }}"
                         alt="Food Safety Poster {{ $i }}"
                         class="w-full h-full object-cover cursor-pointer"
-                        onclick="openPosterModal('{{ asset('posters/Poster' . $i . '.jpg') }}', 'Food Safety Poster {{ $i }}')"
+                        onclick="openPosterModal('{{ asset('poster-files/Poster' . $i . '.jpg') }}', 'Food Safety Poster {{ $i }}')"
                     >
                 </div>
                 <div class="p-4">
                     <h3 class="text-lg font-semibold mb-2 text-gray-800">Food Safety Poster {{ $i }}</h3>
                     <button 
-                        onclick="openPosterModal('{{ asset('posters/Poster' . $i . '.jpg') }}', 'Food Safety Poster {{ $i }}')"
+                        onclick="openPosterModal('{{ asset('poster-files/Poster' . $i . '.jpg') }}', 'Food Safety Poster {{ $i }}')"
                         class="bg-primary hover:bg-orange-600 text-white px-4 py-2 rounded inline-flex items-center transition-colors"
                     >
                         <i class="fas fa-expand mr-2"></i>
