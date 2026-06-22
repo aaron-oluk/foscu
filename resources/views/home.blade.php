@@ -17,7 +17,7 @@
             <h3 class="text-3xl font-bold text-center mb-8 text-orange-500">Food Safety News</h3>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+                <div class="overflow-hidden">
                     <blockquote class="twitter-tweet" data-media-max-width="560">
                         <p lang="en" dir="ltr">FOOD SAFETY ALERT!!<br><br>Watch and learn how SEX-PHEROMONE TRAPS are used to manage
                             FRUIT FLIES!!!<br>NON-CHEMICAL PEST MANAGEMENT promotes food safety.<br><br>Full video 👉 <a
@@ -30,7 +30,7 @@
                     </blockquote>
                 </div>
 
-                <div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+                <div class="overflow-hidden">
                     <blockquote class="twitter-tweet" data-media-max-width="560">
                         <p lang="en" dir="ltr">FOOD SAFETY ALERT!!<br><br>Watch and learn how SEX-PHEROMONE TRAPS are used to manage
                             FRUIT FLIES!!!<br>NON-CHEMICAL PEST MANAGEMENT promotes food safety.<br><br>Full video 👉 <a
@@ -43,7 +43,7 @@
                     </blockquote>
                 </div>
 
-                <div class="bg-gray-50 rounded-lg p-6 shadow-sm">
+                <div class="overflow-hidden">
                     <blockquote class="twitter-tweet" data-media-max-width="560">
                         <p lang="en" dir="ltr">FOOD SAFETY ALERT!!<br><br>PESTICIDES ARE DESIGNED TO HARM!!<br>Watch and learn how
                             their lifecycle can be properly managed to protect human health and the environment!!<br><br>Full video 👉

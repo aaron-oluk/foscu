@@ -22,15 +22,14 @@ class DownloadController extends Controller
         
         // Define the file path - handle both direct filenames and paths with directories
         if (str_contains($filename, '/')) {
-            $filePath = storage_path('app/public/' . $filename);
+            $filePath = public_path($filename);
         } else {
-            // Try multiple directories for the file
             $possiblePaths = [
-                storage_path('app/public/briefs/' . $filename),
-                storage_path('app/public/articles/' . $filename),
-                storage_path('app/public/reports/' . $filename),
+                public_path('briefs/' . $filename),
+                public_path('briefs/reports/' . $filename),
+                public_path('briefs/articles/' . $filename),
             ];
-            
+
             $filePath = null;
             foreach ($possiblePaths as $path) {
                 if (file_exists($path)) {
@@ -38,7 +37,7 @@ class DownloadController extends Controller
                     break;
                 }
             }
-            
+
             if (!$filePath) {
                 return abort(404, 'File not found');
             }
