@@ -31,7 +31,7 @@ class LogoController extends Controller
         ]);
 
         $data = $request->except('image');
-        
+
         if ($request->hasFile('image')) {
             $data['image'] = $request->file('image')->store('logos', 'public');
         }
@@ -41,18 +41,17 @@ class LogoController extends Controller
         return redirect()->route('admin.logos.index')->with('message', 'Logo added successfully');
     }
 
-    public function show(string $id)
+    public function show(Logo $logo)
     {
-        //
+        return view('admin.logos.show', compact('logo'));
     }
 
-    public function edit(string $id)
+    public function edit(Logo $logo)
     {
-        $logo = Logo::findOrFail($id);
         return view('admin.logos.edit', compact('logo'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request, Logo $logo)
     {
         $request->validate([
             'partner_name' => 'required|string|max:255',
@@ -62,11 +61,9 @@ class LogoController extends Controller
             'display_order' => 'nullable|integer|min:0',
         ]);
 
-        $logo = Logo::findOrFail($id);
         $data = $request->except('image');
-        
+
         if ($request->hasFile('image')) {
-            // Delete old image if exists
             if ($logo->image && Storage::disk('public')->exists($logo->image)) {
                 Storage::disk('public')->delete($logo->image);
             }
@@ -78,15 +75,12 @@ class LogoController extends Controller
         return redirect()->route('admin.logos.index')->with('message', 'Logo updated successfully');
     }
 
-    public function destroy(string $id)
+    public function destroy(Logo $logo)
     {
-        $logo = Logo::findOrFail($id);
-        
-        // Delete image file if exists
         if ($logo->image && Storage::disk('public')->exists($logo->image)) {
             Storage::disk('public')->delete($logo->image);
         }
-        
+
         $logo->delete();
 
         return redirect()->route('admin.logos.index')->with('message', 'Logo deleted successfully');

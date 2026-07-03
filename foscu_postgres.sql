@@ -7675,25 +7675,6 @@ CREATE TABLE events (
 
 -- --------------------------------------------------------
 
---
--- Table structure for table logos
---
-
-DROP TABLE IF EXISTS logos CASCADE;
-CREATE TABLE logos (
-  id SERIAL,
-  organisation varchar(40) NOT NULL,
-  picture bytea DEFAULT NULL,
-  upload_date date NOT NULL
-);
-
---
--- Dumping data for table logos
---
-
-INSERT INTO logos (id, organisation, picture, upload_date) VALUES
-(0, 'FOscu', '\x7374617469632f75706c6f6164732f466f6f642053616665747920436f616c6974696f6e205567616e64615f466f72207765622042616e6e65722e706e67'::bytea, '2023-07-20');
-
 -- --------------------------------------------------------
 
 --
