@@ -26,7 +26,9 @@ DROP TABLE IF EXISTS downloads CASCADE;
 CREATE TABLE downloads (
   id SERIAL,
   filename varchar(255) NOT NULL,
-  downloads integer NOT NULL
+  downloads integer NOT NULL,
+  created_at timestamp NULL,
+  updated_at timestamp NULL
 );
 
 --
@@ -7653,6 +7655,9 @@ INSERT INTO downloads (id, filename, downloads) VALUES
 (7605, 'FOSCU Sythesis Report 2024-FINAL.pdf', 1),
 (7606, 'no 11 CONSENT Enhancing Food Safety Initiatives at Mbale Central.pdf', 1),
 (7607, 'no 11 CONSENT Enhancing Food Safety Initiatives at Mbale Central.pdf', 1);
+
+UPDATE downloads SET created_at = NOW(), updated_at = NOW();
+
 
 -- --------------------------------------------------------
 
