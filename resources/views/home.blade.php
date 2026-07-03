@@ -407,10 +407,10 @@
                                     @if($logo->image)
                                         @if($logo->website_url)
                                             <a href="{{ $logo->website_url }}" target="_blank" class="block w-full h-full">
-                                                <img src="{{ asset('storage/' . $logo->image) }}" alt="{{ $logo->partner_name }}" class="w-full h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
+                                                <img src="{{ asset($logo->image) }}" alt="{{ $logo->partner_name }}" class="w-full h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
                                             </a>
                                         @else
-                                            <img src="{{ asset('storage/' . $logo->image) }}" alt="{{ $logo->partner_name }}" class="w-full h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
+                                            <img src="{{ asset($logo->image) }}" alt="{{ $logo->partner_name }}" class="w-full h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
                                         @endif
                                     @else
                                         <div class="w-full h-full bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center rounded-xl">
@@ -436,10 +436,10 @@
                                 @if($logo->image)
                                     @if($logo->website_url)
                                         <a href="{{ $logo->website_url }}" target="_blank" class="block w-full h-full">
-                                            <img src="{{ asset('storage/' . $logo->image) }}" alt="{{ $logo->partner_name }}" class="w-full h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
+                                            <img src="{{ asset($logo->image) }}" alt="{{ $logo->partner_name }}" class="w-full h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
                                         </a>
                                     @else
-                                        <img src="{{ asset('storage/' . $logo->image) }}" alt="{{ $logo->partner_name }}" class="w-full h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
+                                        <img src="{{ asset($logo->image) }}" alt="{{ $logo->partner_name }}" class="w-full h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300">
                                     @endif
                                 @else
                                     <div class="w-full h-full bg-gradient-to-br from-orange-100 to-orange-200 flex items-center justify-center rounded-xl">
