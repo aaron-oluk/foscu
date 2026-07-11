@@ -7665,20 +7665,23 @@ UPDATE downloads SET created_at = NOW(), updated_at = NOW();
 -- Table structure for table events
 --
 
-DROP TABLE IF EXISTS events CASCADE;
-CREATE TABLE events (
+-- Non-destructive: keeps any existing rows instead of dropping the table,
+-- and only adds columns that are actually missing (safe to re-run).
+CREATE TABLE IF NOT EXISTS events (
   id SERIAL,
   eventname varchar(250) NOT NULL,
-  description text NULL,
   eventdate date NOT NULL,
-  event_time time NULL,
-  enddate date NOT NULL,
-  location varchar(255) NULL,
-  image varchar(255) NULL,
-  status varchar(255) NOT NULL DEFAULT 'upcoming' CHECK (status IN ('upcoming', 'ongoing', 'completed')),
-  created_at timestamp NULL,
-  updated_at timestamp NULL
+  enddate date NOT NULL
 );
+
+ALTER TABLE events ADD COLUMN IF NOT EXISTS description text NULL;
+ALTER TABLE events ADD COLUMN IF NOT EXISTS event_time time NULL;
+ALTER TABLE events ADD COLUMN IF NOT EXISTS location varchar(255) NULL;
+ALTER TABLE events ADD COLUMN IF NOT EXISTS image varchar(255) NULL;
+ALTER TABLE events ADD COLUMN IF NOT EXISTS status varchar(255) NOT NULL DEFAULT 'upcoming'
+  CHECK (status IN ('upcoming', 'ongoing', 'completed'));
+ALTER TABLE events ADD COLUMN IF NOT EXISTS created_at timestamp NULL;
+ALTER TABLE events ADD COLUMN IF NOT EXISTS updated_at timestamp NULL;
 
 -- --------------------------------------------------------
 
