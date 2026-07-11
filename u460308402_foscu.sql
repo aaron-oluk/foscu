@@ -7667,8 +7667,15 @@ INSERT INTO `downloads` (`id`, `filename`, `downloads`) VALUES
 CREATE TABLE `events` (
   `id` int(10) NOT NULL,
   `eventname` varchar(250) NOT NULL,
+  `description` text NULL,
   `eventdate` date NOT NULL,
-  `enddate` date NOT NULL
+  `event_time` time NULL,
+  `enddate` date NOT NULL,
+  `location` varchar(255) NULL,
+  `image` varchar(255) NULL,
+  `status` enum('upcoming','ongoing','completed') NOT NULL DEFAULT 'upcoming',
+  `created_at` timestamp NULL,
+  `updated_at` timestamp NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

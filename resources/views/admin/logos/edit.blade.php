@@ -41,7 +41,7 @@
                         <label for="image" class="block text-sm font-medium text-gray-700">Logo Image</label>
                         @if($logo->image)
                             <div class="mb-2">
-                                <img src="{{ asset('storage/' . $logo->image) }}" alt="Current logo" class="w-32 h-32 object-contain bg-gray-50 rounded border">
+                                <img src="{{ $logo->image_url }}" alt="Current logo" class="w-32 h-32 object-contain bg-gray-50 rounded border">
                                 <p class="text-sm text-gray-600">Current logo</p>
                             </div>
                         @endif
