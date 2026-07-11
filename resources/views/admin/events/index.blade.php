@@ -62,6 +62,11 @@
                             </tbody>
                         </table>
                     </div>
+                    @if($events->hasPages())
+                        <div class="mt-4">
+                            {{ $events->links() }}
+                        </div>
+                    @endif
                 </div>
 
                 <!-- Recent Events -->
@@ -101,6 +106,11 @@
                             </tbody>
                         </table>
                     </div>
+                    @if($recentEvents->hasPages())
+                        <div class="mt-4">
+                            {{ $recentEvents->links() }}
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
