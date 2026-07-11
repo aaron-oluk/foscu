@@ -7669,8 +7669,15 @@ DROP TABLE IF EXISTS events CASCADE;
 CREATE TABLE events (
   id SERIAL,
   eventname varchar(250) NOT NULL,
+  description text NULL,
   eventdate date NOT NULL,
-  enddate date NOT NULL
+  event_time time NULL,
+  enddate date NOT NULL,
+  location varchar(255) NULL,
+  image varchar(255) NULL,
+  status varchar(255) NOT NULL DEFAULT 'upcoming' CHECK (status IN ('upcoming', 'ongoing', 'completed')),
+  created_at timestamp NULL,
+  updated_at timestamp NULL
 );
 
 -- --------------------------------------------------------

@@ -25,7 +25,7 @@
                         <div class="bg-white border border-gray-200 rounded-lg shadow-sm p-4">
                             <div class="aspect-w-16 aspect-h-9 mb-4">
                                 @if($logo->image)
-                                    <img src="{{ asset('storage/' . $logo->image) }}" alt="{{ $logo->partner_name }}" class="w-full h-32 object-contain bg-gray-50 rounded">
+                                    <img src="{{ $logo->image_url }}" alt="{{ $logo->partner_name }}" class="w-full h-32 object-contain bg-gray-50 rounded">
                                 @else
                                     <div class="w-full h-32 bg-gray-100 rounded flex items-center justify-center">
                                         <span class="text-gray-400">No Image</span>
