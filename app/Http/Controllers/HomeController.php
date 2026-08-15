@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\RecentEvent;
 use App\Models\Logo;
 use App\Models\EventCategory;
+use App\Models\ResourceFile;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -57,15 +58,7 @@ class HomeController extends Controller
 
     public function papers()
     {
-        $pdfs = [
-            ['file' => 'FOSCU Sythesis Report 2024-FINAL.pdf', 'title' => 'FoSCU Synthesis Report 2024'],
-            ['file' => 'FoSCU Report_Members OCA.pdf', 'title' => 'FoSCU Report Members OCA'],
-            ['file' => 'FoSCU Research Brief 01_MaizeVC.pdf', 'title' => 'Research Brief - Maize Value Chain'],
-            ['file' => 'FoSCU Research Brief 02_GnutsVC.pdf', 'title' => 'Research Brief - Groundnuts Value Chain'],
-            ['file' => 'FoSCU Research brief 03_DairyVC.pdf', 'title' => 'Research Brief - Dairy Value Chain'],
-            ['file' => 'FoSCU Research brief 04_BeefVC.pdf', 'title' => 'Research Brief - Beef Value Chain'],
-            ['file' => 'FoSCU Research brief 05_FruitsandVegiezVC.pdf', 'title' => 'Research Brief - Fruits and Vegetables Value Chain'],
-        ];
+        $pdfs = $this->publicFiles(['papers', 'reports', 'research', 'policy']);
 
         return view('pages.papers', compact('pdfs'));
     }
@@ -77,67 +70,15 @@ class HomeController extends Controller
 
     public function reports()
     {
-        // Get reports from storage
-        $reports = collect([
-            [
-                'title' => 'FOSCU Synthesis Report 2024',
-                'description' => 'Comprehensive synthesis of food safety activities and outcomes for 2024',
-                'file' => 'FOSCU Sythesis Report 2024-FINAL.pdf',
-                'category' => 'reports'
-            ],
-            [
-                'title' => 'FoSCU Members OCA Report',
-                'description' => 'Organizational capacity assessment of FoSCU members and stakeholders',
-                'file' => 'FoSCU Report_Members OCA.pdf',
-                'category' => 'reports'
-            ]
-        ]);
-        
+        $reports = $this->publicFiles(['reports', 'papers']);
+
         return view('pages.reports', compact('reports'));
     }
 
     public function research()
     {
-        // Get research briefs from storage
-        $researchBriefs = collect([
-            [
-                'title' => 'FoSCU Research Brief 01 - Maize Value Chain',
-                'description' => 'Food safety challenges and opportunities in the maize value chain',
-                'file' => 'FoSCU Research Brief 01_MaizeVC.pdf',
-                'category' => 'research'
-            ],
-            [
-                'title' => 'FoSCU Research Brief 02 - Groundnuts Value Chain', 
-                'description' => 'Food safety assessment in groundnut production and processing',
-                'file' => 'FoSCU Research Brief 02_GnutsVC.pdf',
-                'category' => 'research'
-            ],
-            [
-                'title' => 'FoSCU Research Brief 03 - Dairy Value Chain',
-                'description' => 'Food safety practices in dairy production and distribution',
-                'file' => 'FoSCU Research brief 03_DairyVC.pdf',
-                'category' => 'research'
-            ],
-            [
-                'title' => 'FoSCU Research Brief 04 - Beef Value Chain',
-                'description' => 'Food safety standards in beef production and processing',
-                'file' => 'FoSCU Research brief 04_BeefVC.pdf',
-                'category' => 'research'
-            ],
-            [
-                'title' => 'FoSCU Research Brief 05 - Fruits and Vegetables Value Chain',
-                'description' => 'Food safety considerations in fruits and vegetables value chain',
-                'file' => 'FoSCU Research brief 05_FruitsandVegiezVC.pdf',
-                'category' => 'research'
-            ],
-            [
-                'title' => 'Aflatoxins in Uganda Report',
-                'description' => 'Comprehensive study on aflatoxin contamination in Uganda food systems',
-                'file' => 'AFLATOXINS IN UGANDA 03062025. Final Printable version pdf.pdf',
-                'category' => 'research'
-            ]
-        ]);
-        
+        $researchBriefs = $this->publicFiles(['research']);
+
         return view('pages.research', compact('researchBriefs'));
     }
 
@@ -175,33 +116,19 @@ class HomeController extends Controller
 
     public function articles()
     {
-        $articles = [
-            ['file' => '1HAZARDOUS PESTICIDES CRISIS.pdf', 'title' => 'Hazardous Pesticides Crisis'],
-            ['file' => '2Crisis of HHP.pdf', 'title' => 'Crisis of HHP'],
-            ['file' => '3FoSCU Participation in the CAADP.pdf', 'title' => 'FOSCU Participation in the CAADP'],
-            ['file' => 'no 4 50 YEARS OF FOOD SAFETY EXCELLENCE.pdf', 'title' => '50 Years of Food Safety Excellence'],
-            ['file' => 'no 5 RUCID CHAMPIONS ORGANIC AGRICULTURE TRAINING IN UGANDA.pdf', 'title' => 'RUCID Champions Organic Agriculture Training in Uganda'],
-            ['file' => 'no 6 The Magic of Pheromone Sex Traps.pdf', 'title' => 'The Magic of Pheromone Sex Traps'],
-            ['file' => 'no 7 COLLABORATIVE DEVELOPMENT OF FOOD SAFETY GUIDANCE.pdf', 'title' => 'Collaborative Development of Food Safety Guidance'],
-            ['file' => 'no 8 AGROECOLOGY.pdf', 'title' => 'AGROECOLOGY'],
-            ['file' => 'no 9 FROM TOMATO STALLS TO POLICY HALLS.pdf', 'title' => 'FROM TOMATO STALLS TO POLICY HALLS'],
-            ['file' => 'no 10 THE PEOPLE\'S TRIBUNAL ON AGROTOXINS.pdf', 'title' => 'THE PEOPLE\'S TRIBUNAL ON AGROTOXINS'],
-            ['file' => 'no 11 CONSENT Enhancing Food Safety Initiatives at Mbale Central.pdf', 'title' => 'Enhancing Food Safety Initiatives at Mbale Central'],
-            ['file' => 'no 12 FOSCU AT HARVEST MONEY EXPO 2025.pdf', 'title' => 'FOSCU AT HARVEST MONEY EXPO 2025'],
-            ['file' => 'no 13 FOSCU ADVOCATES FOR ROBUST FOOD SAFETY MEASURES IN UGANDA\'S REVISED NUTRITION POLICY AND BILL.pdf', 'title' => 'FOSCU ADVOCATES FOR ROBUST FOOD SAFETY MEASURES IN UGANDA\'S REVISED NUTRITION POLICY AND BILL'],
-            ['file' => 'no 14 FOSCU TAKES TO THE AIRWAVES AMPLIFYING FOOD SAFETY AWARENESS AND ADVOCACY IN UGANDA.pdf', 'title' => 'FOSCU TAKES TO THE AIRWAVES AMPLIFYING FOOD SAFETY AWARENESS AND ADVOCACY IN UGANDA'],
-            ['file' => 'no 15 FOSCU SPEAR HEADS AFLATOXIN AWARENESS CAMPAIGN TO SAFEGUARD UGANDA\'S FOOD VALUE CHAIN.pdf', 'title' => 'FOSCU SPEAR HEADS AFLATOXIN AWARENESS CAMPAIGN TO SAFEGUARD UGANDA\'S FOOD VALUE CHAIN'],
-            ['file' => 'no 16 TACKLING FOOD SAFETY AND MALNUTRITION.pdf', 'title' => 'TACKLING FOOD SAFETY AND MALNUTRITION'],
-            ['file' => 'no 17 ADDRESSING THE RISKS OF HIGHLY HAZARDOUS PESTICIDES IN UGANDA.pdf', 'title' => 'ADDRESSING THE RISKS OF HIGHLY HAZARDOUS PESTICIDES IN UGANDA'],
-            ['file' => 'no 18 GROUNDNUT TRADERS DEVELOP SELF REGULATION FRAMEWORK.pdf', 'title' => 'GROUNDNUT TRADERS DEVELOP SELF REGULATION FRAMEWORK']
-        ];
-        
+        $articles = $this->publicFiles(['articles']);
+
         return view('pages.articles', compact('articles'));
     }
 
     public function policyBriefs()
     {
-        return view('pages.policy-briefs');
+        $briefs = ResourceFile::where('is_public', true)
+            ->where('category', 'policy')
+            ->orderBy('title')
+            ->get();
+
+        return view('pages.policy-briefs', compact('briefs'));
     }
 
     public function eLearning()
@@ -225,5 +152,19 @@ class HomeController extends Controller
     public function updates()
     {
         return view('pages.updates');
+    }
+
+    private function publicFiles(array $categories)
+    {
+        return ResourceFile::where('is_public', true)
+            ->whereIn('category', $categories)
+            ->orderBy('title')
+            ->get()
+            ->map(fn (ResourceFile $file) => [
+                'title' => $file->display_title,
+                'description' => $file->display_filename,
+                'file' => basename($file->stored_path),
+                'category' => $file->category,
+            ]);
     }
 }

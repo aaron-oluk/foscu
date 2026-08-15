@@ -1,119 +1,100 @@
 @extends('layouts.admin')
 
-@section('page-title', 'Events Management')
+@section('page-title', 'Events')
 
 @section('content')
-<div class="py-12">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            <div class="p-6 text-gray-900">
-                <div class="flex justify-between items-center mb-6">
-                    <h1 class="text-2xl font-semibold">Event Management</h1>
-                    <a href="{{ route('admin.events.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                        Add New Event
-                    </a>
-                </div>
+<div class="space-y-6">
+    @if(session('message'))
+        <div class="admin-flash-ok">{{ session('message') }}</div>
+    @endif
 
-                @if(session('message'))
-                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-                        {{ session('message') }}
-                    </div>
-                @endif
-
-                <!-- Upcoming Events -->
-                <div class="mb-8">
-                    <h2 class="text-xl font-semibold mb-4">Upcoming Events</h2>
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full bg-white border border-gray-200">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th class="px-6 py-3 border-b border-gray-200 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                                    <th class="px-6 py-3 border-b border-gray-200 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event Name</th>
-                                    <th class="px-6 py-3 border-b border-gray-200 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Start Date</th>
-                                    <th class="px-6 py-3 border-b border-gray-200 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">End Date</th>
-                                    <th class="px-6 py-3 border-b border-gray-200 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-200">
-                                @forelse($events as $event)
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $event->id }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $event->eventname }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $event->formatted_event_date }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $event->formatted_end_date }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <a href="{{ route('admin.events.edit', $event->id) }}" class="text-indigo-600 hover:text-indigo-900 mr-3">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <form method="POST" action="{{ route('admin.events.destroy', $event->id) }}" class="inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('Are you sure?')">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @empty
-                                <tr>
-                                    <td colspan="5" class="px-6 py-4 text-center text-gray-500">No upcoming events found</td>
-                                </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
-                    @if($events->hasPages())
-                        <div class="mt-4">
-                            {{ $events->links() }}
-                        </div>
-                    @endif
-                </div>
-
-                <!-- Recent Events -->
-                <div>
-                    <h2 class="text-xl font-semibold mb-4">Recent Events</h2>
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full bg-white border border-gray-200">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th class="px-6 py-3 border-b border-gray-200 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
-                                    <th class="px-6 py-3 border-b border-gray-200 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Event Name</th>
-                                    <th class="px-6 py-3 border-b border-gray-200 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                                    <th class="px-6 py-3 border-b border-gray-200 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-gray-200">
-                                @forelse($recentEvents as $event)
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $event->id }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $event->eventname }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ $event->formatted_event_date }}</td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <form method="POST" action="{{ route('admin.events.recent.destroy', $event->id) }}" class="inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="text-red-600 hover:text-red-900" onclick="return confirm('Are you sure?')">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @empty
-                                <tr>
-                                    <td colspan="4" class="px-6 py-4 text-center text-gray-500">No recent events found</td>
-                                </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
-                    @if($recentEvents->hasPages())
-                        <div class="mt-4">
-                            {{ $recentEvents->links() }}
-                        </div>
-                    @endif
-                </div>
-            </div>
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+            <h2 class="text-xl font-semibold text-slate-900">Event management</h2>
+            <p class="mt-1 text-sm text-slate-500">Upcoming and recent events shown on the public site.</p>
         </div>
+        <a href="{{ route('admin.events.create') }}" class="admin-btn">Add event</a>
+    </div>
+
+    <div class="admin-card">
+        <div class="border-b border-slate-100 px-6 py-4">
+            <h3 class="font-semibold text-slate-900">Upcoming events</h3>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-slate-100">
+                <thead class="bg-slate-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">Event</th>
+                        <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">Start</th>
+                        <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">End</th>
+                        <th class="px-6 py-3"></th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                    @forelse($events as $event)
+                        <tr class="hover:bg-slate-50/80">
+                            <td class="px-6 py-4 text-sm font-medium text-slate-900">{{ $event->eventname }}</td>
+                            <td class="px-6 py-4 text-sm text-slate-600">{{ $event->formatted_event_date }}</td>
+                            <td class="px-6 py-4 text-sm text-slate-600">{{ $event->formatted_end_date }}</td>
+                            <td class="px-6 py-4 text-right whitespace-nowrap">
+                                <a href="{{ route('admin.events.edit', $event->id) }}" class="text-sm font-medium text-slate-700 hover:text-primary">Edit</a>
+                                <form method="POST" action="{{ route('admin.events.destroy', $event->id) }}" class="inline ms-3">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-sm font-medium text-red-600 hover:text-red-700" onclick="return confirm('Are you sure?')">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="4" class="px-6 py-10 text-center text-sm text-slate-500">No upcoming events found.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+        @if($events->hasPages())
+            <div class="border-t border-slate-100 px-6 py-4">{{ $events->links() }}</div>
+        @endif
+    </div>
+
+    <div class="admin-card">
+        <div class="border-b border-slate-100 px-6 py-4">
+            <h3 class="font-semibold text-slate-900">Recent events</h3>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-slate-100">
+                <thead class="bg-slate-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">Event</th>
+                        <th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">Date</th>
+                        <th class="px-6 py-3"></th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                    @forelse($recentEvents as $event)
+                        <tr class="hover:bg-slate-50/80">
+                            <td class="px-6 py-4 text-sm font-medium text-slate-900">{{ $event->eventname }}</td>
+                            <td class="px-6 py-4 text-sm text-slate-600">{{ $event->formatted_event_date }}</td>
+                            <td class="px-6 py-4 text-right whitespace-nowrap">
+                                <form method="POST" action="{{ route('admin.events.recent.destroy', $event->id) }}" class="inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-sm font-medium text-red-600 hover:text-red-700" onclick="return confirm('Are you sure?')">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="3" class="px-6 py-10 text-center text-sm text-slate-500">No recent events found.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+        @if($recentEvents->hasPages())
+            <div class="border-t border-slate-100 px-6 py-4">{{ $recentEvents->links() }}</div>
+        @endif
     </div>
 </div>
 @endsection

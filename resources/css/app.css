@@ -1,3 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+[x-cloak] {
+    display: none !important;
+}
+
+@layer components {
+    .admin-card {
+        @apply overflow-hidden rounded border border-slate-200 bg-white shadow-sm;
+    }
+    .admin-btn {
+        @apply inline-flex items-center justify-center rounded bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-orange-600;
+    }
+    .admin-btn-secondary {
+        @apply inline-flex items-center justify-center rounded border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50;
+    }
+    .admin-input {
+        @apply mt-1 block w-full rounded border-slate-200 text-sm shadow-none focus:border-primary focus:ring-primary;
+    }
+    .admin-flash-ok {
+        @apply rounded border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800;
+    }
+    .admin-flash-err {
+        @apply rounded border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800;
+    }
+    .admin-label {
+        @apply block text-sm font-medium text-slate-700;
+    }
+    .admin-file {
+        @apply mt-1 block w-full text-sm text-slate-500 file:mr-4 file:rounded file:border-0 file:bg-orange-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-orange-700 hover:file:bg-orange-100;
+    }
+}

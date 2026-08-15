@@ -4,6 +4,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\LogoController;
+use App\Http\Controllers\Admin\ResourceFileController;
+use App\Http\Controllers\Admin\BackupController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\EventPhotoController;
 use App\Http\Controllers\Api\EventPhotosApiController;
 use App\Http\Controllers\ProfileController;
@@ -58,6 +61,21 @@ Route::middleware('auth')->group(function () {
         Route::resource('events', EventController::class);
         Route::delete('events/recent/{id}', [EventController::class, 'destroyRecent'])->name('events.recent.destroy');
         Route::resource('logos', LogoController::class);
+
+        Route::get('files', [ResourceFileController::class, 'index'])->name('files.index');
+        Route::post('files', [ResourceFileController::class, 'store'])->name('files.store');
+        Route::post('files/sync', [ResourceFileController::class, 'sync'])->name('files.sync');
+        Route::get('files/{file}/edit', [ResourceFileController::class, 'edit'])->name('files.edit');
+        Route::put('files/{file}', [ResourceFileController::class, 'update'])->name('files.update');
+        Route::get('files/{file}/download', [ResourceFileController::class, 'download'])->name('files.download');
+        Route::delete('files/{file}', [ResourceFileController::class, 'destroy'])->name('files.destroy');
+
+        Route::get('backups', [BackupController::class, 'index'])->name('backups.index');
+        Route::post('backups', [BackupController::class, 'store'])->name('backups.store');
+        Route::get('backups/{backup}/download', [BackupController::class, 'download'])->name('backups.download');
+        Route::delete('backups/{backup}', [BackupController::class, 'destroy'])->name('backups.destroy');
+
+        Route::resource('users', UserController::class)->except(['show']);
     });
     
     // Event Photo Management routes
