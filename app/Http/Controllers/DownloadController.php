@@ -23,6 +23,11 @@ class DownloadController extends Controller
         }
 
         $basename = basename($filePath);
+
+        if ($basename === '' || $basename === '.' || $basename === '..') {
+            abort(404, 'File not found');
+        }
+
         $record = ResourceFile::query()
             ->where('stored_path', $basename)
             ->orWhere('stored_path', 'like', '%/'.$basename)
