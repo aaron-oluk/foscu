@@ -1,69 +1,49 @@
-@extends('layouts.dashboard')
+@extends('layouts.admin')
 
-@section('title', 'Create Event Category')
+@section('page-title', 'Create category')
 
 @section('content')
-<div class="container mx-auto px-4 py-8">
-    <div class="flex justify-between items-center mb-8">
-        <h1 class="text-3xl font-bold text-gray-800">Create Event Category</h1>
-        <a href="{{ route('dashboard.event-photos.index') }}" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg transition-colors">
-            <i class="fas fa-arrow-left mr-2"></i>Back to Event Photos
-        </a>
+<div class="mx-auto max-w-2xl space-y-6">
+    <div class="flex items-center justify-between">
+        <div>
+            <h2 class="text-xl font-semibold text-slate-900">Create event category</h2>
+            <p class="mt-1 text-sm text-slate-500">Group photos for the public gallery.</p>
+        </div>
+        <a href="{{ route('dashboard.event-photos.index') }}" class="admin-btn-secondary">Back</a>
     </div>
 
-    <div class="bg-white rounded-lg shadow-md p-6">
-        <form action="{{ route('dashboard.event-photos.categories.store') }}" method="POST">
+    <div class="admin-card p-6">
+        <form action="{{ route('dashboard.event-photos.categories.store') }}" method="POST" class="space-y-4">
             @csrf
-            
-            <div class="grid md:grid-cols-2 gap-6">
+            <div class="grid gap-4 md:grid-cols-2">
                 <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Category Name *</label>
-                    <input type="text" id="name" name="name" value="{{ old('name') }}" required
-                           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 @error('name') border-red-500 @enderror">
-                    @error('name')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
+                    <label for="name" class="admin-label">Category name *</label>
+                    <input type="text" id="name" name="name" value="{{ old('name') }}" required class="admin-input @error('name') border-red-500 @enderror">
+                    @error('name')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                 </div>
-
                 <div>
-                    <label for="status" class="block text-sm font-medium text-gray-700 mb-2">Status *</label>
-                    <select id="status" name="status" required
-                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 @error('status') border-red-500 @enderror">
+                    <label for="status" class="admin-label">Status *</label>
+                    <select id="status" name="status" required class="admin-input @error('status') border-red-500 @enderror">
                         <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>Active</option>
                         <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>Inactive</option>
                     </select>
-                    @error('status')
-                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                    @enderror
+                    @error('status')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
                 </div>
             </div>
-
-            <div class="mt-6">
-                <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Description</label>
-                <textarea id="description" name="description" rows="4"
-                          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 @error('description') border-red-500 @enderror">{{ old('description') }}</textarea>
-                @error('description')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
+            <div>
+                <label for="description" class="admin-label">Description</label>
+                <textarea id="description" name="description" rows="4" class="admin-input @error('description') border-red-500 @enderror">{{ old('description') }}</textarea>
+                @error('description')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
             </div>
-
-            <div class="mt-6">
-                <label for="display_order" class="block text-sm font-medium text-gray-700 mb-2">Display Order *</label>
-                <input type="number" id="display_order" name="display_order" value="{{ old('display_order', 0) }}" min="0" required
-                       class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 @error('display_order') border-red-500 @enderror">
-                @error('display_order')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
-                <p class="text-sm text-gray-500 mt-1">Lower numbers appear first</p>
+            <div>
+                <label for="display_order" class="admin-label">Display order *</label>
+                <input type="number" id="display_order" name="display_order" value="{{ old('display_order', 0) }}" min="0" required class="admin-input @error('display_order') border-red-500 @enderror">
+                <p class="mt-1 text-xs text-slate-500">Lower numbers appear first.</p>
+                @error('display_order')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
             </div>
-
-            <div class="mt-8 flex justify-end space-x-4">
-                <a href="{{ route('dashboard.event-photos.index') }}" class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded-lg transition-colors">
-                    Cancel
-                </a>
-                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition-colors">
-                    <i class="fas fa-save mr-2"></i>Create Category
-                </button>
+            <div class="flex justify-end gap-3 pt-2">
+                <a href="{{ route('dashboard.event-photos.index') }}" class="admin-btn-secondary">Cancel</a>
+                <button type="submit" class="admin-btn">Create category</button>
             </div>
         </form>
     </div>

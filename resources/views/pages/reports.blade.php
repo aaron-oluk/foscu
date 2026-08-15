@@ -20,6 +20,7 @@
             </a>
         </div>
         
+        @if($reports->count() > 0)
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($reports as $report)
             <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
@@ -40,6 +41,12 @@
             </div>
             @endforeach
         </div>
+        @else
+        <div class="text-center py-16">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-700">No reports yet</h2>
+            <p class="text-gray-600">Public files in the Reports category will appear here.</p>
+        </div>
+        @endif
     </div>
 </div>
 @endsection

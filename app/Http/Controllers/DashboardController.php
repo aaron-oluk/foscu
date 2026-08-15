@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use App\Models\RecentEvent;
 use App\Models\Logo;
-use Illuminate\Http\Request;
+use App\Models\ResourceFile;
+use App\Models\SystemBackup;
+use App\Models\User;
 
 class DashboardController extends Controller
 {
@@ -15,6 +17,9 @@ class DashboardController extends Controller
         $upcomingEvents = Event::where('status', 'upcoming')->count();
         $totalRecentEvents = RecentEvent::count();
         $totalLogos = Logo::count();
+        $totalFiles = ResourceFile::count();
+        $totalBackups = SystemBackup::where('status', 'completed')->count();
+        $totalUsers = User::count();
         
         $recentEvents = Event::orderBy('created_at', 'desc')->take(5)->get();
         
@@ -23,6 +28,9 @@ class DashboardController extends Controller
             'upcomingEvents', 
             'totalRecentEvents',
             'totalLogos',
+            'totalFiles',
+            'totalBackups',
+            'totalUsers',
             'recentEvents'
         ));
     }

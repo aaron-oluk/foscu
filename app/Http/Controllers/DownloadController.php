@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Download;
+use App\Models\ResourceFile;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class DownloadController extends Controller
 {
@@ -28,6 +28,7 @@ class DownloadController extends Controller
                 public_path('briefs/' . $filename),
                 public_path('briefs/reports/' . $filename),
                 public_path('briefs/articles/' . $filename),
+                storage_path('app/public/resource-files/' . $filename),
             ];
 
             $filePath = null;
@@ -44,7 +45,17 @@ class DownloadController extends Controller
         }
         
         if (file_exists($filePath)) {
-            return response()->download($filePath);
+            $basename = basename($filePath);
+            $record = ResourceFile::query()
+                ->where('stored_path', $basename)
+                ->orWhere('stored_path', 'like', '%/'.$basename)
+                ->orWhere('original_filename', $filename)
+                ->orWhere('original_filename', $basename)
+                ->first();
+
+            $downloadAs = $record?->download_name ?? ResourceFile::stripNumberPrefix($basename);
+
+            return response()->download($filePath, $downloadAs);
         }
         
         return abort(404, 'File not found');

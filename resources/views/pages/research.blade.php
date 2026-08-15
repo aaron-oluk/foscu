@@ -20,6 +20,7 @@
             </a>
         </div>
 
+        @if($researchBriefs->count() > 0)
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($researchBriefs as $brief)
             <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
@@ -43,6 +44,12 @@
             </div>
             @endforeach
         </div>
+        @else
+        <div class="text-center py-16">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-700">No research briefs yet</h2>
+            <p class="text-gray-600">Public files in the Research briefs category will appear here.</p>
+        </div>
+        @endif
 
         <!-- Additional Info Section -->
         <div class="mt-16 bg-gray-50 rounded-lg p-8">

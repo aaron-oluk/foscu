@@ -20,6 +20,7 @@
             </a>
         </div>
 
+        @if(count($pdfs) > 0)
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($pdfs as $pdf)
             <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
@@ -42,6 +43,12 @@
             </div>
             @endforeach
         </div>
+        @else
+        <div class="text-center py-16">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-700">No papers yet</h2>
+            <p class="text-gray-600">Public files will appear here once they are added in the dashboard.</p>
+        </div>
+        @endif
 
     </div>
 </div>
