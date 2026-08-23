@@ -179,5 +179,7 @@
         </script>
         
         @stack('scripts')
+
+        <script defer src="https://analytics.aloflux.com/tracker.js" data-site="foscu.org"></script>
     </body>
 </html>
