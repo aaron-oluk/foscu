@@ -258,5 +258,7 @@
         @if (Route::has('login'))
             <div class="h-14.5 hidden lg:block"></div>
         @endif
+
+        <script defer src="https://analytics.aloflux.com/tracker.js" data-site="foscu.org"></script>
     </body>
 </html>
